@@ -75,7 +75,7 @@ createLights();
 
 
 /*--------------------
-Bubble
+Bubble1
 --------------------*/
 const vertex = width > 575 ? 80 : 40;
 const bubbleGeometry = new THREE.SphereGeometry(150, vertex, vertex);
@@ -94,11 +94,38 @@ const createBubble = () => {
     //wireframe: true
   });
   bubble = new THREE.Mesh(bubbleGeometry, bubbleMaterial);
-  bubble.castShadow = false;
+  bubble.castShadow = false; //shadow
   bubble.receiveShadow = false;
   scene.add(bubble);
 };
 createBubble();
+
+
+/*--------------------
+Bubble2
+--------------------*/
+const vertex2 = width > 575 ? 80 : 40;
+const bubbleGeometry2 = new THREE.SphereGeometry(130, vertex2, vertex2);
+let bubble2;
+const createBubble2 = () => {
+  for (let i = 0; i < bubbleGeometry2.vertices.length; i++) {
+    let vector = bubbleGeometry2.vertices[i];
+    vector.original = vector.clone();
+  }
+  const bubbleMaterial2 = new THREE.MeshStandardMaterial({
+    emissive: 0xffffff,
+    emissiveIntensity: 0.40,
+    roughness: 0.7,
+    metalness: 0.1,
+    side: THREE.FrontSide,  
+    wireframe: true,
+  });
+  bubble2 = new THREE.Mesh(bubbleGeometry2, bubbleMaterial2);
+  bubble2.castShadow = false; //shadow
+  bubble2.receiveShadow = false;
+  scene.add(bubble2);
+};
+createBubble2();
 
 
 /*--------------------
@@ -204,7 +231,7 @@ window.addEventListener('resize', function () {
 
 
 /*--------------------
-Noise
+Noise for bubble
 --------------------*/
 let dist = new THREE.Vector2(0, 0);
 let maxDist = distance(mouse, { x: width / 2, y: height / 2 });
@@ -227,6 +254,34 @@ const updateVertices = time => {
 };
 
 
+
+/*--------------------
+Noise for bubble2
+--------------------*/
+let dist2 = new THREE.Vector2(0, 0);
+let maxDist2 = distance(mouse, { x: width / 2, y: height / 2 });
+const updateVertices2 = time => {
+  dist2 = distance(mouse, { x: width / 4, y: height / 4 });
+  dist2 /= maxDist2;
+  dist2 = map(dist2, 1, 0, 0, 1);
+  for (let i = 0; i < bubbleGeometry2.vertices.length; i++) {
+    let vector = bubbleGeometry2.vertices[i];
+    vector.copy(vector.original);
+    let perlin = noise.simplex3(
+    vector.x * 0.006 + time * 0.0006,
+    vector.y * 0.006 + time * 0.0006,
+    vector.z * 0.006);
+
+    let ratio = perlin * 0.3 * (dist2 + 0.1) + 0.8;
+    vector.multiplyScalar(ratio);
+  }
+    
+  bubbleGeometry2.verticesNeedUpdate = true;
+};
+
+
+
+
 /*--------------------
 Animate
 --------------------*/
@@ -236,6 +291,7 @@ const render = a => {
   bubble.rotation.z = 4 + map(mouse.y, 0, height, 0, -4);
   bubble.scale.set(spring.scale, spring.scale, spring.scale);
   updateVertices(a);
+  updateVertices2(a);
   renderer.clear();
   renderer.render(scene, camera);
 };
