@@ -94,7 +94,7 @@ const createBubble = () => {
     //wireframe: true
   });
   bubble = new THREE.Mesh(bubbleGeometry, bubbleMaterial);
-  bubble.castShadow = true;
+  bubble.castShadow = false;
   bubble.receiveShadow = false;
   scene.add(bubble);
 };
