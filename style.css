@@ -1,21 +1,44 @@
 /*--------------------
 Body
 --------------------*/
-*,
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
 *::before,
 *::after {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
+
+
+.container {
+    position: absolute;
+    bottom: 5%;
+    left: 2%;
+}
+
+.text {
+    font-size: 3vw;
+    color: #fafafa;
+}
+
+.dud {
+    color: #dbdbdb;
+}
+
+
 body {
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  background: linear-gradient(135deg, #dbdbdb, #c4c4c4);  // 渐变颜色
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(180deg, #dbdbdb, #c4c4c4); 
+
+    font-family: 'Montserrat', sans-serif;
+
 }
 
 .scene {
-  position: absolute;
-  width: 100%;
-  height: 100vh;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
 }
