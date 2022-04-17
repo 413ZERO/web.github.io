@@ -74,7 +74,7 @@ class TextScramble {
 
 const phrases = [
 'Hi! </br> I\'m Zehan Bao / Justin, </br> An Innovation designer, </br> Self-taught creative technoligest',
-'I\'m passionate about </br> creating inspiring projects </br> that liberate peoples preconceptions'
+'I\'m passionate about </br> creating inspiring projects </br> that liberate people\'s preconceptions'
 
 ];
 
