@@ -31,7 +31,7 @@ body {
     height: 100vh;
     margin: 0;
     overflow: hidden;
-    background: linear-gradient(180deg, #dbdbdb, #c4c4c4); 
+    background: linear-gradient(180deg, #c4c4c4, #dbdbdb); 
 
     font-family: 'Montserrat', sans-serif;
 
