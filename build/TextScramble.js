@@ -73,7 +73,7 @@ class TextScramble {
 // ——————————————————————————————————————————————————
 
 const phrases = [
-'Hi! </br> I\'m Zehan Bao / Justin </br> An Innovation designer </br> Curiosity-driven creative technologist'
+'Hi! </br> I\'m Zehan Bao / Justin </br> An Innovation designer </br> Curiosity-driven creative technologist',
 'I\'m passionate about </br> creating insightful designs </br> that refresh people\'s preconceptions'
 
 ];
