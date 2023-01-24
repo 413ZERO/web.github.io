@@ -19,12 +19,12 @@ const setup = () => {
   renderer.shadowMap.enabled = true;
   renderer.shadowMapSoft = true;
 
-  scene.fog = new THREE.Fog(0x000000, 10, 950);
+  scene.fog = new THREE.Fog(0x000000, 10, 1000);
 
   const aspectRatio = width / height;
   const fieldOfView = 80;
   const nearPlane = 0.1;
-  const farPlane = 10000;
+  const farPlane = 2000;
     
   camera = new THREE.PerspectiveCamera(
   fieldOfView,
@@ -42,34 +42,13 @@ setup();
 /*--------------------
 Lights
 --------------------*/
-let hemispshereLight, shadowLight, light2;
+let hemispshereLight, light2;
 const createLights = () => {
-  hemisphereLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .45);
-
-  shadowLight = new THREE.DirectionalLight(0x000000, .4);
-  shadowLight.position.set(0, 450, 350);
-  shadowLight.castShadow = true;
-
-  shadowLight.shadow.camera.left = -150;
-  shadowLight.shadow.camera.right = 650;
-  shadowLight.shadow.camera.top = 650;
-  shadowLight.shadow.camera.bottom = -650;
-  shadowLight.shadow.camera.near = 1;
-  shadowLight.shadow.camera.far = 1000;
-
-  shadowLight.shadow.mapSize.width = 4096;
-  shadowLight.shadow.mapSize.height = 4096;
-
-  light2 = new THREE.DirectionalLight(0xffffff, .09);
+  hemisphereLight = new THREE.HemisphereLight(0xffffff, 0xffffff, .5);
+  light2 = new THREE.DirectionalLight(0xffffff, .1);
   light2.position.set(-600, 350, 350);
-
-  light3 = new THREE.DirectionalLight(0xffffff, .09);
-  light3.position.set(0, -250, 300);
-
   scene.add(hemisphereLight);
-  scene.add(shadowLight);
   scene.add(light2);
-  scene.add(light3);
 };
 createLights();
 
@@ -88,7 +67,7 @@ const createBubble = () => {
   const bubbleMaterial = new THREE.MeshStandardMaterial({
     emissive: 0xffffff,
     emissiveIntensity: 0.40,
-    roughness: 0.61,
+    roughness: 0.60,
     metalness: 0.1,
     side: THREE.FrontSide
     //wireframe: true
