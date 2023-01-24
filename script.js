@@ -66,8 +66,8 @@ const createBubble = () => {
   }
   const bubbleMaterial = new THREE.MeshStandardMaterial({
     emissive: 0xffffff,
-    emissiveIntensity: 0.40,
-    roughness: 0.60,
+    emissiveIntensity: 0.38,
+    roughness: 0.65,
     metalness: 0.1,
     side: THREE.FrontSide
     //wireframe: true
